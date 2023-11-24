@@ -1,6 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+contract EmissionTokenFactory{
+    mapping(address => bool) public registry;
+
+    event EmissionTokenCreated(address emissionTokenAddress, address owner);
+
+    function createEmissionToken(address _owner) external{
+       EmissionToken emissionToken = new EmissionToken(_owner);
+       emit EmissionTokenCreated(address(emissionToken), _owner);
+    }
+
+    function verifyEmissionToken(address _token) external view returns(bool){
+        return registry[_token];
+    }  
+
+}
+
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 // TBD Based on ERC-165, ERC-721, ERC-5192
@@ -15,8 +31,9 @@ contract EmissionToken {
         uint emission_decimals;
         uint retired_kgCO2;
         uint emission_date;
-        uint emission_type;
-        uint emission_accuracy;
+        uint8 emission_type;
+        uint8 emission_accuracy;
+        string name;
     }
     Emission public emission;
 
@@ -50,6 +67,8 @@ contract EmissionToken {
     event TransferFromToken(address indexed emissionToken, address indexed from, uint amount, address indexed greenToken);
     // Notify that a retire action has taken place
     event RetireToken(address indexed emissionToken, uint amount, address indexed greenToken);
+    // Notify when the token gets set with useful data
+    event SetEmission(uint emission_kgCO2, uint emission_decimals, uint emission_date, uint8 emission_type, uint8 emission_accuracy, string name);
 
     constructor(address _owner) {
         // Set the token owner 
@@ -61,14 +80,14 @@ contract EmissionToken {
     }
 
     // Record the emission amount - one time only for non-zero kgCO2
-    function setEmission(uint _emission_kgCO2, uint _emission_decimals, uint _emission_date, uint _emission_type, uint _emission_accuracy) public onlyOwner returns (bool) {
+    function setEmission(uint _emission_kgCO2, uint _emission_decimals, uint _emission_date, uint8 _emission_type, uint8 _emission_accuracy, string memory _name) public onlyOwner returns (bool) {
         // Only allow this once
         require(emission.emission_kgCO2 == 0, "Emission data has already been set");
         // Do not allow an emission kgO2 value of 0
         require(_emission_kgCO2 > 0, "Emission datacannot have 0 kgCO2");
         // Save the data in the emission record
-        emission = Emission({emission_kgCO2: _emission_kgCO2, emission_decimals: _emission_decimals, retired_kgCO2: 0, emission_date: _emission_date, emission_type: _emission_type, emission_accuracy: _emission_accuracy});
-
+        emission = Emission({emission_kgCO2: _emission_kgCO2, emission_decimals: _emission_decimals, retired_kgCO2: 0, emission_date: _emission_date, emission_type: _emission_type, emission_accuracy: _emission_accuracy, name: _name});
+        emit SetEmission(_emission_kgCO2, _emission_decimals, _emission_date, _emission_type, _emission_accuracy, _name);
         return true;
     }
 
