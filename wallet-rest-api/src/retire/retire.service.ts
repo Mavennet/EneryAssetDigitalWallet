@@ -17,7 +17,6 @@ export class RetireService {
     }
     
     async findAll(query: any): Promise<any> {
-        //query.id = query._id;
         let list = await this.retireModel.find().lean().exec();
         let page = await list.map(retire => {
             console.log(retire);
@@ -36,9 +35,5 @@ export class RetireService {
         console.log("list=", retire)
         return retire;
     }    
-
-    async dummy(): Promise<any> {
-        return {}
-    }  
 
 }

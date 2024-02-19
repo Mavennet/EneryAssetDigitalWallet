@@ -17,7 +17,6 @@ export class EmissionService {
       }
     
     async findAll(query: any): Promise<any> {
-        //query.id = query._id;
         let list = await this.emissionsModel.find().lean().exec();
         let page = await list.map(emission => {
             console.log(emission);
@@ -40,11 +39,6 @@ export class EmissionService {
     async putId(body: any): Promise<any> {
         let emission = await this.emissionsModel.updateOne({_id: body.id}, body);
         return body;
-    }    
-
-
-    async dummy(): Promise<any> {
-        return {}
     }    
 
 }

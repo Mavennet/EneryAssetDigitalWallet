@@ -17,7 +17,6 @@ export class SettingsService {
     }
     
     async findAll(query: any): Promise<any> {
-        //query.id = query._id;
         let list = await this.settingsModel.find().lean().exec();
         let page = await list.map(settings => {
             console.log(settings);
@@ -44,8 +43,4 @@ export class SettingsService {
         return settings;
     }    
 
-    async dummy(): Promise<any> {
-        return {}
-    }  
-    
 }

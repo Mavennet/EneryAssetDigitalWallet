@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 const Aside = () => {
     return (
         <div style={{ width: 300, margin: '1em' }}>
-            <Typography variant="h6">Add wallet details for this token here</Typography>
+            <Typography variant="h6"></Typography>
         </div>
     );
 };

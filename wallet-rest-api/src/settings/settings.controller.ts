@@ -20,11 +20,6 @@ export class SettingsController {
 
     }
 
-    @Get('getList')
-    getList(): Promise<any> {
-      return this.settingsService.dummy();
-    }
-
     @Get('getFirst')
     getFirst(): Promise<any> {
         console.log('Controller getFirst');
@@ -37,54 +32,10 @@ export class SettingsController {
         return this.settingsService.getOne(params.id);
     }
 
-
-    @Post('getOne')
-    getOne(): Promise<any> {
-        return this.settingsService.dummy();
-    }
-
-
-    // get a list of records based on an array of ids
-    @Post('getMany')
-    getMany(): Promise<any> {
-        return this.settingsService.dummy();
-    }
-
-    // get the records referenced to another record, e.g. comments for a post
-    @Post('getManyReference')
-    getManyReference(): Promise<any> {
-        return this.settingsService.dummy();
-    }
-
     // create a record
     @Post('create')
     createEmission(@Body() createSettingsDto: CreateSettingsDto): Promise<any> {
         return this.settingsService.create(createSettingsDto);
     }
-
-    // update a record based on a patch
-    @Post('update')
-    update(): Promise<any> {
-        return this.settingsService.dummy();
-    }
-
-    // update a list of records based on an array of ids and a common patch
-    @Post('updateMany')
-    updateMany(): Promise<any> {
-        return this.settingsService.dummy();
-    }
-
-    // delete a record by id
-    @Post('delete')
-    delete(): Promise<any> {
-        return this.settingsService.dummy();
-    }
-
-    // delete a list of records based on an array of ids
-    @Post('deleteMany')
-    deleteMany(): Promise<any> {
-        return this.settingsService.dummy();
-    }
-
 
 }

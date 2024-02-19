@@ -20,11 +20,6 @@ export class EmissionController {
 
     }
     
-    @Get('getList')
-    getList(): Promise<any> {
-      return this.emissionService.dummy();
-    }
-
     // get a single record by id
     @Get(':id')
     defaultId(@Param() params: any): Promise<any> {
@@ -40,54 +35,9 @@ export class EmissionController {
         return retval;
     }
 
-    @Post('getOne')
-    getOne(): Promise<any> {
-        return this.emissionService.dummy();
-    }
-
-
-    // get a list of records based on an array of ids
-    @Post('getMany')
-    getMany(): Promise<any> {
-        return this.emissionService.dummy();
-    }
-
-    // get the records referenced to another record, e.g. comments for a post
-    @Post('getManyReference')
-    getManyReference(): Promise<any> {
-        return this.emissionService.dummy();
-    }
-
     // create a record
     @Post('create')
     createEmission(@Body() createEmissionDto: CreateEmissionDto): Promise<any> {
         return this.emissionService.create(createEmissionDto);
     }
-
-    // update a record based on a patch
-    @Post('update')
-    update(): Promise<any> {
-        return this.emissionService.dummy();
-    }
-
-    // update a list of records based on an array of ids and a common patch
-    @Post('updateMany')
-    updateMany(): Promise<any> {
-        return this.emissionService.dummy();
-    }
-
-    // delete a record by id
-    @Post('delete')
-    delete(): Promise<any> {
-        return this.emissionService.dummy();
-    }
-
-    // delete a list of records based on an array of ids
-    @Post('deleteMany')
-    deleteMany(): Promise<any> {
-        return this.emissionService.dummy();
-    }
-
-
-
 }

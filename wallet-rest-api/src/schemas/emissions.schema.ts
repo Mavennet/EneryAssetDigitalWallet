@@ -38,10 +38,6 @@ export class Emissions {
   @Prop()
   emission_accuracy: Number;
 
-  //@Prop({ type: SchemaTypes.ObjectId, ref: 'Offsets', required:true })
-  //offset!: Types.ObjectId[]; 
-
-
 };
 
 export const EmissionsSchema = SchemaFactory.createForClass(Emissions);

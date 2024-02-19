@@ -21,33 +21,10 @@ export class WalletController {
 
     }
 
-    @Get('getList')
-    getList(): Promise<any> {
-      return this.walletService.dummy();
-    }
-
     // get a single record by id
     @Get(':id')
     defaultId(@Param() params: any): Promise<any> {
         return this.walletService.getOne(params.id);
-    }
-
-    @Post('getOne')
-    getOne(): Promise<any> {
-        return this.walletService.dummy();
-    }
-
-
-    // get a list of records based on an array of ids
-    @Post('getMany')
-    getMany(): Promise<any> {
-        return this.walletService.dummy();
-    }
-
-    // get the records referenced to another record, e.g. comments for a post
-    @Post('getManyReference')
-    getManyReference(): Promise<any> {
-        return this.walletService.dummy();
     }
 
     // create a record
@@ -60,24 +37,6 @@ export class WalletController {
     @Post('retire')
     retire(@Body() retireOffsetDto: RetireOffsetDto): Promise<any> {
         return this.walletService.retire(retireOffsetDto);
-    }
-
-    // update a list of records based on an array of ids and a common patch
-    @Post('updateMany')
-    updateMany(): Promise<any> {
-        return this.walletService.dummy();
-    }
-
-    // delete a record by id
-    @Post('delete')
-    delete(): Promise<any> {
-        return this.walletService.dummy();
-    }
-
-    // delete a list of records based on an array of ids
-    @Post('deleteMany')
-    deleteMany(): Promise<any> {
-        return this.walletService.dummy();
     }
 
 }

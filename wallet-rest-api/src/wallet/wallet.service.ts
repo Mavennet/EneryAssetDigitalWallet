@@ -46,8 +46,4 @@ export class WalletService {
         return updatedOracle;
     }    
 
-    async dummy(): Promise<any> {
-        return {}
-    }    
-
 }

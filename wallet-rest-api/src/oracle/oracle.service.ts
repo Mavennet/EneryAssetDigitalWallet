@@ -26,7 +26,6 @@ export class OracleService {
     
 
     async findAll(query: any): Promise<any> {
-        //query.id = query._id;
         let list = await this.oracleModel.find().lean().exec();
         let page = await list.map(oracle => {
             console.log(oracle);
@@ -45,9 +44,5 @@ export class OracleService {
         console.log("list=", oracle)
         return oracle;
     }    
-
-    async dummy(): Promise<any> {
-        return {}
-    }      
 
 }
